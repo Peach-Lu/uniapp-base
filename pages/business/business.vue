@@ -1,7 +1,7 @@
 <template>
 	<view class="index" :style="{ paddingTop: statusHeight + navHeight + 'px' }">
 		<view class="header" :style="{ height: statusHeight + 'px' }">
-			<image class="header_bg" src="/static/icons/背景@2x.png" />
+			<image class="header_bg" src="/static/icons/bg.png" />
 			<up-navbar title="业务" @rightClick="rightClick" bgColor="transparent">
 				<template #left>
 					<view class="u-nav-slot flex align-center">

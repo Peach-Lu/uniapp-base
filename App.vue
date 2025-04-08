@@ -70,4 +70,7 @@
 		overflow: hidden;
 	}
 	/* #endif */
+	page{
+		height: 100vh;
+	}
 </style>

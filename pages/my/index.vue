@@ -2,7 +2,7 @@
 	<view class="index relative" :style="{ paddingTop: statusHeight + navHeight + 'px' }">
 		<img class="absolute top-0 left-0 z-0 h-full w-full" src="/static/icons/我的背景@2x.png" alt="">
 		<view class="header relative z-10" :style="{ height: statusHeight + 'px' }">
-			<image class="header_bg" src="/static/icons/背景@2x.png" />
+			<image class="header_bg" src="/static/icons/bg.png" />
 			<up-navbar title="我的" @rightClick="rightClick" bgColor="transparent">
 				<template #left>
 					<view class="u-nav-slot flex align-center">
@@ -11,7 +11,10 @@
 				</template>
 			</up-navbar>
 		</view>
-		<view class="container  relative z-3" :style="{ height: (windowBottom ? (contentHeight-windowBottom) : contentHeight) + 'px', overflow: 'auto' }">
+		
+		<!-- <view class="container  relative z-3"
+			:style="{ height: (windowBottom ? (contentHeight - windowBottom) : contentHeight) + 'px', overflow: 'auto' }"> -->
+			<view class="container relative z-3" :style="{ height: (safeAreaHeight - navHeight - 49) + 'px', overflow: 'auto' }">
 			<!-- userinfo -->
 			<view class="userinfo mb-[60rpx] flex items-center">
 				<view class="rounded-[50%] overflow-hidden w-[100rpx] h-[100rpx] mr-[24rpx]">
@@ -33,37 +36,44 @@
 				</view>
 			</view>
 			<!-- order -->
-			<view class="order flex justify-between">
-				<view class="flex justify-center items-center flex-col">
-					<view class="w-[60rpx] h-[60rpx]">
-						<image class="w-full h-full" src="/static/icons/待付款@2x.png" />
+			<view class="bg-white rounded-[20rpx] pb-[20rpx]">
+				<!-- title -->
+				 <view class="pl-[30rpx] mb-[20rpx]">
+					我的订单
+				 </view>
+					 
+				<view class="order flex justify-between pl-[50rpx]  pr-[50rpx]">
+					<view class="flex justify-center items-center flex-col">
+						<view class="w-[60rpx] h-[60rpx]">
+							<image class="w-full h-full" src="/static/icons/awaitPay.png" />
+						</view>
+						<view class="">
+							待付款
+						</view>
 					</view>
-					<view class="">
-						待付款
+					<view class="flex justify-center items-center flex-col">
+						<view class="w-[60rpx] h-[60rpx]">
+							<image class="w-full h-full" src="/static/icons/awaitPay.png" />
+						</view>
+						<view class="">
+							待付款
+						</view>
 					</view>
-				</view>
-				<view class="flex justify-center items-center flex-col">
-					<view class="w-[60rpx] h-[60rpx]">
-						<image class="w-full h-full" src="/static/icons/待付款@2x.png" />
+					<view class="flex justify-center items-center flex-col">
+						<view class="w-[60rpx] h-[60rpx]">
+							<image class="w-full h-full" src="/static/icons/awaitPay.png" />
+						</view>
+						<view class="">
+							待付款
+						</view>
 					</view>
-					<view class="">
-						待付款
-					</view>
-				</view>
-				<view class="flex justify-center items-center flex-col">
-					<view class="w-[60rpx] h-[60rpx]">
-						<image class="w-full h-full" src="/static/icons/待付款@2x.png" />
-					</view>
-					<view class="">
-						待付款
-					</view>
-				</view>
-				<view class="flex justify-center items-center flex-col">
-					<view class="w-[60rpx] h-[60rpx]">
-						<image class="w-full h-full" src="/static/icons/待付款@2x.png" />
-					</view>
-					<view class="">
-						待付款
+					<view class="flex justify-center items-center flex-col">
+						<view class="w-[60rpx] h-[60rpx]">
+							<image class="w-full h-full" src="/static/icons/awaitPay.png" />
+						</view>
+						<view class="">
+							待付款
+						</view>
 					</view>
 				</view>
 			</view>
@@ -77,7 +87,7 @@
 				<view v-for="item in 4" :key="item" class="menu_item h-[120rpx] flex items-center justify-between">
 					<view class="flex">
 						<view class="w-[48rpx] h-[48rpx] mr-[30rpx]">
-							<image class="w-full h-full" src="/static/icons/企业地址@2x.png" />
+							<image class="w-full h-full" src="/static/icons/qiyeaddress.png" />
 						</view>
 					</view>
 					<view class="flex-1">
@@ -100,7 +110,9 @@
 // 	login
 // } from "@/api/base.js"
 import { useHeight } from '../../hook/useHeight'
-const { contentHeight, statusHeight, navHeight,windowBottom } = useHeight()
+import { onLoad, onShow, onHide, onUnload } from '@dcloudio/uni-app'
+const { contentHeight, statusHeight, navHeight, windowBottom,safeAreaHeight } = useHeight()
+
 const list = [
 	'https://picsum.photos/335/80',
 	'https://picsum.photos/335/81',
@@ -135,5 +147,8 @@ view {
 .header_bg {
 	width: 100%;
 	height: 100%;
+}
+.userinfo{
+	color: #cff2fd;
 }
 </style>

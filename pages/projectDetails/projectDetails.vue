@@ -1,7 +1,7 @@
 <template>
   <view class="index" :style="{ paddingTop: statusHeight + navHeight + 'px' }">
     <view class="header" :style="{ height: statusHeight + 'px' }">
-      <image class="header_bg" src="/static/icons/背景@2x.png" />
+      <image class="header_bg" src="/static/icons/bg.png" />
       <up-navbar title="项目详情" @rightClick="rightClick" bgColor="transparent">
         <template #left>
           <view class="u-nav-slot flex align-center text-24">
@@ -26,29 +26,36 @@
           <view class="target_price">
             ¥ 
             {{ radiolist1[current]?.originalPrice }}
+            <view class="line">
+              
+            </view>
+              
             <!-- {{ originalPrice }} -->
           </view>
         </view>
 
       </view>
       <!-- form -->
-      <up-form labelPosition="left" :model="form" :rules="rules" ref="uFormRef" labelWidth="100" class="test">
-        <up-form-item style="margin-top: 30rpx;" label="规格编号" prop="specNo" borderBottom >
+      
+      <view class="bg-white rounded-[10rpx] p-[27rpx] pl-[20rpx] pt-[5rpx] m-b[30rpx]">
+        <up-form labelPosition="left" :model="form" :rules="rules" ref="uFormRef" labelWidth="100" class="test">
+        <up-form-item style="margin-top: 30rpx;" label="规格编号" prop="specNo"  >
           <up-radio-group v-model="form['specNo']" placement="row" class="flex justify-between items-center" @change="change('specNo',form.specNo)">
             <up-radio v-for="(item, index) in radiolist1" :key="index" :label="item.specSku"
               :name="item.value"></up-radio>
           </up-radio-group>
         </up-form-item>
-        <up-form-item label="签约方式" prop="status" borderBottom @change="change2('status',form.status)">
+        <up-form-item label="签约方式" prop="status"  @change="change2('status',form.status)">
           <up-radio-group v-model="form['status']" placement="row" class="flex justify-between items-center">
             <up-radio v-for="(item, index) in radiolist2" :key="index" :label="item.name" :name="item.value"></up-radio>
           </up-radio-group>
         </up-form-item>
       </up-form>
+      </view>
       <!-- fuwu  -->
-      <view class="bg-white rounded-[10rpx] p-[17rpx] pl-[10rpx] m-b[30rpx] mt-[30rpx]">
+      <view class="bg-white rounded-[10rpx] p-[27rpx] pl-[20rpx] m-b[30rpx] mt-[30rpx]">
         <up-form :model="form2" ref="uFormRef2" :rules="rules2" labelWidth="100">
-          <up-form-item labelWidth="100" class="fuwu_details" label="服务企业" prop="" borderBottom
+          <up-form-item labelWidth="100" class="fuwu_details" label="服务企业" prop="" 
             ref="item1">
             <template #right>
               <view class="flex">
@@ -63,7 +70,7 @@
         </up-action-sheet>
       </view>
       <!-- fuwudetails -->
-      <view class="bg-white rounded-[10rpx] p-[17rpx] pl-[10rpx] h-[400rpx] mb-[44rpx] relative">
+      <view class="bg-white rounded-[10rpx] p-[27rpx] pl-[20rpx] h-[400rpx] mb-[44rpx] relative">
         <view class="fuwu_details">
           服务详情
         </view>
@@ -74,7 +81,7 @@
     <view class="footer  pl-[52rpx] pr-[40rpx] bg-white flex items-center justify-between"
       :style="{ height: (49) + 'px' }">
       <view class="flex items-center justify-center items-center flex-col" @click="goHome">
-        <image class="w-[48rpx] h-[48rpx]" src="/static//icons/AI学习-默认@2x.png" />
+        <image class="w-[48rpx] h-[48rpx]" src="/static//icons/home-active.png" />
         <view>
           首页
         </view>
@@ -101,6 +108,10 @@ import { createdOrder } from '@/api/good.js'
 //   console.log(option)
 // }) 
 onMounted(() => {
+  getParamsData()
+})
+
+const getParamsData = () =>{
   const instance = getCurrentInstance().proxy
   const eventChannel = instance.getOpenerEventChannel();
   eventChannel.on('acceptDataFromOpenerPage', function ({ data }) {
@@ -122,7 +133,7 @@ onMounted(() => {
   })
   console.log('uFormRef.value',uFormRef.value)
    uFormRef.value.setRules(rules)
-})
+}
 // 提交
 //   productNo	-	String	是	商品编号
 // specNo	-	String	是	规格编号
@@ -209,6 +220,7 @@ const submit = () => {
   height: 100vh;
   background: linear-gradient(180deg, rgba(45, 106, 246, 0.2) 1%, rgba(104, 216, 254, 0.1) 92%);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 view {
@@ -260,6 +272,12 @@ view {
   font-size: 26rpx;
   color: rgba(51, 51, 51, 0.5);
   line-height: 36rpx;
+}
+.line{
+  width: 100%;
+  height: 1rpx;
+  background: rgba(66, 66, 66);
+  margin-top: calc(-36rpx / 2);
 
 }
 ::v-deep .test .u-form-item__body__left__content__label{

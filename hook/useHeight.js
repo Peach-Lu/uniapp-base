@@ -1,5 +1,6 @@
 import {
 	onLoad,
+	onReady,
 	onShow
 } from "@dcloudio/uni-app"
 import {
@@ -15,6 +16,7 @@ export const useHeight = () => {
 	const navHeight = ref(44)
 	const Height = ref(0)
 	const windowBottom = ref(0)
+	// onReady
 	onLoad(() => {
 		const {
 			safeArea,
@@ -30,6 +32,7 @@ export const useHeight = () => {
 		
 
 		console.log('uni.getWindowInfo()', uni.getWindowInfo())
+		console.log('uni.getDeviceInfo()', uni.getDeviceInfo())
 		console.log('windowHeight', windowHeight)
 		Height.value = windowHeight
 		statusHeight.value = safeAreaInsets.top
